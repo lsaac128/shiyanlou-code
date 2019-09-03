@@ -6,7 +6,7 @@ for i in range(0, n):
 	name = input('输入学生的名字 {}'.format(i + 1))
 	marks = []
 	for x in Subjects:
-		marks.append(int(input('分数：'.format(x))))
+		marks.append(int(input('科目{}的分数：'.format(x))))
 	data[name] = marks
 for x, y in data.items():
 	total = sum(y)
