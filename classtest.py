@@ -1,30 +1,26 @@
-class UserData:
-    def __init__(self, age, name):
+class UserData(object):
+    def __init__(self, id, name):
+        self.id = id
         self._name = name
-        self.age = age
-
-    def __repr__(self):
-        return 'ID:{} Name:{}'.format(self.age, self._name)
 
 
 class NewUser(UserData):
-    group = 'shiyanlou-louplus'
-    def get_name(self):
-        return self._name
-
-    def set_name(self, value):
-        self._name = value
-
-    @classmethod
-    def get_group(cls):
-        return cls.group
-
-    @staticmethod
-    def format_userdata(id, name):
-#        print("{}'s id is {}".format(name, id))
-        return "{}'s id is {}".format(name, id)
-
+	@property
+	def name(self):
+		return self._name
+	
+	@name.setter
+	def name(self, value):
+		if len(value) > 3:
+			self._name = value
+		else:
+			print('ERROR')
+    
 
 if __name__ == '__main__':
-    print(NewUser.get_group())
-    print(NewUser.format_userdata(109,'Lucy'))
+    user1 = NewUser(101, 'Jack')
+    user1.name = 'Lou'
+    user1.name = 'Jackie'
+    user2 = NewUser(102, 'Louplus')
+    print(user1.name)
+    print(user2.name)
