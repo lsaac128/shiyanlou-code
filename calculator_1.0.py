@@ -13,8 +13,13 @@ class UserData(Args):
            data = dict(list(csv.reader(f)))
         return data
 
+    def jisuan(self):
+        for line in self.huoqu():
+            gz = int(self.huoqu()[line])
+            yjssde = gz -gz*0.165 - 5000
+            ns = yjssde*0.03
+            print('ID:{},gz:{}, ns:{}'.format(line,self.huoqu()[line],ns))
+
 
 age = UserData()
-age_1 = age.huoqu()
-for i in age_1:
-    print(i,age_1[i])
+age.jisuan()
