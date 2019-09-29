@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 
 app = Flask(__name__)
@@ -9,7 +9,16 @@ app.config.update({
 
 @app.route('/')
 def index():
-    return 'Hello World!'
+    course = {
+            'python':'lou+ python',
+            'java':'java base',
+            'bigdata':'spark sql',
+            'teacher':'shixiaolou',
+            'is_unique':False,
+            'has_tag':True,
+            'tags':['c', 'c++', 'docker']
+            }
+    return render_template('index.html', course=course)
 
 @app.route('/httptest', methods=['get', 'post'])
 def httptest():
