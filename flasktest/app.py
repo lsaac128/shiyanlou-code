@@ -20,6 +20,10 @@ def index():
             }
     return render_template('index.html', course=course)
 
+@app.route('/courses/<courses_name>')
+def coursesname(courses_name):
+    return 'Courses:{}'.format(courses_name)
+
 @app.route('/httptest', methods=['get', 'post'])
 def httptest():
     if request.method == 'POST':
@@ -36,10 +40,6 @@ def user_index(username):
 @app.route('/port/<int:post_id>')
 def show_post(post_id):
     return 'Post {}'.format(post_id)
-
-@app.route('/courses/<coursename>')
-def courses(coursename):
-    return render_template('courses.html', coursename=coursename)
 
 @app.route('/test')
 def test():
