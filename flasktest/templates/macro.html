@@ -1,0 +1,9 @@
+{% macro course_tag(course) %}
+{% if course.tags %}
+    {% for i in course.tags %}
+        <p>{{ i }}<p/>
+    {% endfor %}
+{% else %}
+    <p>aaaa</p>
+{% endif %}
+{% endmacro %}
