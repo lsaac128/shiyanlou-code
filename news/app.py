@@ -21,7 +21,18 @@ def index():
 
 @app.route('/files/<filename>')
 def file(filename):
-    content_list = []
     files_contebt = os.listdir('/home/shiyanlou/files')
-    lujin2 = '/home/shiyanlou/files/' + filename
-    return lujin2
+    lujin2 = '/home/shiyanlou/files/' + filename + '.json'
+    try:
+        with open(lujin2) as f:
+            a = f.read()
+            b = json.loads(a)
+            content = b['content']
+    except FileNotFoundError:
+        return render_template('404.html')
+
+    return render_template('file.html', content=content)
+
+@app.errorhandler(404)
+def miss(e):
+    return render_template('404.html'), 404
