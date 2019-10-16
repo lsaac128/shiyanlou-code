@@ -17,9 +17,9 @@ class RepositoriesSpider(scrapy.Spider):
         return url_list
 
     def parse(self, response):
-        for course in response.css('div.d-inline-block'):
+        for course in response.css('div.col-10.col-lg-9.d-inline-block'):
             item = ShiyanlouItem({
-                'name': course.css('h3 a::text').extract_first().strip(),
+                'name': course.css('div.mb-1 a::text').extract_first().strip(),
                 'update_time': course.css('div.text-gray relative-time::attr(datetime)').extract_first()
                 })
             yield item
