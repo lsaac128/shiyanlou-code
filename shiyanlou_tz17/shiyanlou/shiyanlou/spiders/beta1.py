@@ -18,7 +18,15 @@ class Beta1Spider(scrapy.Spider):
             request = scrapy.Request(full_course_url, self.parse_author)
             request.meta['item'] = item
             yield request
-
+            if response.css('div.BtnGroup button::text').extract_first() == 'Previous':
+                xiayiye = response.css('div.BtnGroup a::attr(href)').extract_first()
+                yield response.follow(xiayiye, callback=self.parse)
+            elif len(response.css('div.BtnGroup a::attr(href)')) == 2:
+                xiayiye = response.css('div.BtnGroup a::attr(href)').extract()[1]
+                yield response.follow(xiayiye, callback=self.parse)
+            elif response.css('div.BtnGroup button::text').extract_first() == 'Next':
+                pass
+            
     
     def parse_author(self, response):
         item = response.meta['item']
