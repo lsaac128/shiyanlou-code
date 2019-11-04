@@ -7,7 +7,7 @@ def data_clean():
             'EN.ATM.CO2E.KT'].set_index('Country code')
     data.drop(labels=['Country name', 'Series code',
         'Series name', 'SCALE', 'Decimals'], axis=1, inplace=True)
-    data.replace({'..', pd.np.NaN}, inplace=True)
+    data.replace({'..': pd.np.NaN}, inplace=True)
     data = data.fillna(method='ffill', axis=1).fillna(method='bfill', axis=1)
     data.dropna(how='all', inplace=True)
     data['Sum emissions'] = data.sum(axis=1)
